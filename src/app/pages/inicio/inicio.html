@@ -93,6 +93,88 @@
       </div>
     </div>
   </section>
+
+  <!-- Grilla de alojamientos destacados. -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="seccion__encabezado">
+        <h2 class="seccion__titulo">Alojamientos destacados</h2>
+        <a class="seccion__enlace" routerLink="/alojamientos">Ver todos <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="grilla">
+        @for (alojamiento of destacados; track alojamiento.nombre) {
+          <article class="tarjeta">
+            <div class="tarjeta__media">
+              <span class="tarjeta__tipo">{{ alojamiento.tipo }}</span>
+              <!-- Marcador de imagen: todavía no tengo las fotos, por eso
+                   dejo este bloque en lugar de un <img>. -->
+              <div class="tarjeta__foto">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <circle cx="8.5" cy="10" r="1.6" />
+                  <path d="m4 17 5-5 4 4 3-3 4 4" />
+                </svg>
+                <span class="tarjeta__foto-texto">Foto: {{ alojamiento.nombre }}</span>
+              </div>
+            </div>
+
+            <div class="tarjeta__cuerpo">
+              <h3 class="tarjeta__nombre">{{ alojamiento.nombre }}</h3>
+              <p class="tarjeta__ubicacion">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M12 21s6-5.3 6-10a6 6 0 1 0-12 0c0 4.7 6 10 6 10Z" />
+                  <circle cx="12" cy="11" r="2.2" />
+                </svg>
+                {{ alojamiento.ciudad }} · {{ alojamiento.ubicacion }}
+              </p>
+
+              <ul class="tarjeta__datos">
+                <li class="tarjeta__dato">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <circle cx="9" cy="8" r="3" />
+                    <path d="M3.5 19.5a5.5 5.5 0 0 1 11 0" />
+                    <path d="M16 5.5a3 3 0 0 1 0 5" />
+                    <path d="M17 14.5a5.5 5.5 0 0 1 3.5 5" />
+                  </svg>
+                  {{ alojamiento.capacidad }} huéspedes
+                </li>
+                <li class="tarjeta__dato">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M4 19V6" />
+                    <path d="M4 13.5h16V19" />
+                    <path d="M4 10h6v3.5" />
+                    <path d="M20 16v-2.5" />
+                  </svg>
+                  {{ alojamiento.camas }} camas
+                </li>
+                <li class="tarjeta__dato">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.6 1-5.8L3.5 9.7l5.9-.9z" />
+                  </svg>
+                  {{ alojamiento.calificacion }}
+                </li>
+              </ul>
+
+              <ul class="tarjeta__chips">
+                @for (servicio of alojamiento.servicios; track servicio) {
+                  <li class="tarjeta__chip">{{ servicio }}</li>
+                }
+              </ul>
+
+              <div class="tarjeta__pie">
+                <p class="tarjeta__precio">
+                  {{ formatearPrecio(alojamiento.precioNoche) }}
+                  <span class="tarjeta__precio-nota">/ noche</span>
+                </p>
+                <a class="boton boton--primario boton--pequeno" routerLink="/alojamientos">Ver detalle</a>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- Pie de página. Igual que el encabezado, luego lo saco a componente. -->
