@@ -1,0 +1,185 @@
+/* Estilos de la portada (index).
+   Escribo en BEM para que cada clase se lea sola y trabajo mobile first:
+   primero el celular y después abro con min-width. */
+
+/* ---------- Contenedor ---------- */
+.contenedor {
+  width: 100%;
+  max-width: 68.75rem; /* 1100px */
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+@media (min-width: 48rem) {
+  .contenedor {
+    padding-inline: var(--space-4);
+  }
+}
+
+/* ---------- Encabezado ---------- */
+.header {
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+}
+
+.header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 4rem;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-fondo);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.header__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.header__link {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  color: var(--color-fondo);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.header__link:hover {
+  background-color: color-mix(in srgb, var(--color-fondo) 10%, transparent);
+}
+
+.header__link--activo {
+  background-color: color-mix(in srgb, var(--color-fondo) 15%, transparent);
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.75rem; /* 44px para que se pueda tocar cómodo */
+  padding-inline: var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton--primario {
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+}
+
+.boton--primario:hover {
+  background-color: color-mix(in srgb, var(--color-primario) 88%, var(--color-fondo));
+}
+
+.boton--acento {
+  background-color: var(--color-acento);
+  color: var(--color-texto);
+}
+
+.boton--acento:hover {
+  background-color: color-mix(in srgb, var(--color-acento) 88%, var(--color-texto));
+}
+
+.boton--claro {
+  border-color: var(--color-fondo);
+  color: var(--color-fondo);
+}
+
+.boton--claro:hover {
+  background-color: color-mix(in srgb, var(--color-fondo) 15%, transparent);
+}
+
+.boton--pequeno {
+  min-height: 2.25rem;
+  padding-inline: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+}
+
+.hero__contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-7);
+  text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .hero__contenido {
+    min-height: 31.25rem; /* ~500px en escritorio */
+    justify-content: center;
+  }
+}
+
+.hero__etiqueta {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background-color: var(--color-acento);
+  color: var(--color-texto);
+  font-size: var(--text-sm);
+}
+
+.hero__titulo {
+  margin: 0;
+  font-size: var(--text-3xl);
+  line-height: 1.1;
+}
+
+.hero__titulo--acento {
+  color: var(--color-acento);
+}
+
+.hero__texto {
+  max-width: 60ch;
+  margin: 0;
+  opacity: 0.85;
+}
+
+.hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+/* ---------- Pie de página ---------- */
+.footer {
+  padding-block: var(--space-6);
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+  text-align: center;
+}
+
+.footer__marca {
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
+}
+
+.footer__linea {
+  margin: 0;
+  font-size: var(--text-sm);
+  opacity: 0.85;
+}
