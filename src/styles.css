@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+/* Tokens de diseño globales.
+   Los dejo en :root para no repetir valores sueltos por los componentes.
+   Son solo 5 colores; los tonos intermedios los saco con color-mix. */
+:root {
+  --color-primario: #0b493c;
+  --color-acento: #fe8965;
+  --color-suave: #c5e9db;
+  --color-fondo: #ffffff;
+  --color-texto: #0e1e1b;
+
+  --font-base: Arial, sans-serif;
+  --text-sm: 0.8rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.563rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-full: 999px;
+
+  --sombra: 0 1px 3px color-mix(in srgb, var(--color-texto) 10%, transparent);
+  --sombra-hover: 0 6px 16px color-mix(in srgb, var(--color-texto) 12%, transparent);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+
+/* Foco visible y consistente en todo lo que se puede interactuar. */
+:focus-visible {
+  outline: 2px solid var(--color-acento);
+  outline-offset: 2px;
+}
