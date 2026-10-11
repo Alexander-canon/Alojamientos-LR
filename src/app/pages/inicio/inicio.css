@@ -165,6 +165,124 @@
   gap: var(--space-3);
 }
 
+/* ---------- Secciones ---------- */
+.seccion {
+  padding-block: var(--space-7);
+}
+
+.seccion--suave {
+  background-color: var(--color-suave);
+}
+
+.seccion__encabezado {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.seccion__titulo {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.seccion__enlace {
+  color: var(--color-primario);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.seccion__enlace:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Carrusel ---------- */
+.carrusel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.carrusel__flecha {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  background-color: var(--color-fondo);
+  color: var(--color-primario);
+  box-shadow: var(--sombra);
+  cursor: pointer;
+}
+
+.carrusel__flecha:hover {
+  box-shadow: var(--sombra-hover);
+}
+
+.carrusel__pista {
+  flex: 1 1 auto;
+  max-width: 43.75rem; /* ~700px */
+  margin-inline: auto;
+}
+
+.carrusel__slide {
+  border-radius: var(--radius-md);
+  background-color: var(--color-fondo);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+
+.carrusel__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 14rem; /* ~225px */
+  background-color: color-mix(in srgb, var(--color-suave) 60%, var(--color-fondo));
+  color: var(--color-primario);
+}
+
+.carrusel__info {
+  padding: var(--space-3) var(--space-4);
+}
+
+.carrusel__nombre {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.carrusel__meta {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-sm);
+  opacity: 0.7;
+}
+
+.carrusel__puntos {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.carrusel__punto {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primario);
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.carrusel__punto--activo {
+  opacity: 1;
+}
+
 /* ---------- Pie de página ---------- */
 .footer {
   padding-block: var(--space-6);
