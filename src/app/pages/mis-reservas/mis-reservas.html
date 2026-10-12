@@ -1,0 +1,26 @@
+<main class="mis-reservas">
+  <a class="mis-reservas__volver" routerLink="/">← Volver al inicio</a>
+  <h1 class="mis-reservas__titulo">Mis reservas</h1>
+
+  @if (reservas.length === 0) {
+    <section class="mis-reservas__vacio">
+      <h2 class="mis-reservas__vacio-titulo">Aún no tienes reservas</h2>
+      <p>Cuando reserves un alojamiento, lo verás aquí.</p>
+      <a class="mis-reservas__enlace" routerLink="/alojamientos">Explorar alojamientos</a>
+    </section>
+  } @else {
+    <div class="mis-reservas__lista">
+      @for (reserva of reservas; track reserva.id) {
+        <article class="mis-reservas__tarjeta">
+          <h2 class="mis-reservas__nombre">{{ reserva.alojamientoNombre }}</h2>
+          <p>{{ reserva.fechaEntrada }} → {{ reserva.fechaSalida }} ({{ reserva.noches }} noches)</p>
+          <p>{{ reserva.huespedes }} huéspedes · {{ reserva.nombreHuesped }}</p>
+          <p class="mis-reservas__total">{{ formatearPrecio(reserva.total) }}</p>
+          <button class="mis-reservas__cancelar" type="button" (click)="onCancelar(reserva.id)">
+            Cancelar reserva
+          </button>
+        </article>
+      }
+    </div>
+  }
+</main>
