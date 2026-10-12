@@ -1,0 +1,134 @@
+<main class="detalle">
+  @if (alojamiento(); as alojamiento) {
+    <div class="contenedor detalle__contenido">
+      <nav class="detalle__migas" aria-label="Ruta">
+        <a class="detalle__retroceso" routerLink="/alojamientos">← Alojamientos</a>
+      </nav>
+
+      <header class="detalle__encabezado">
+        <div>
+          <h1 class="detalle__titulo">{{ alojamiento.nombre }}</h1>
+          <p class="detalle__ubicacion">
+            {{ alojamiento.ciudad }} · {{ alojamiento.ubicacion }} · {{ alojamiento.tipo }}
+          </p>
+          <p class="detalle__nota" aria-label="{{ 'Calificación de ' + alojamiento.calificacion.toFixed(1) }}">
+            ★ {{ alojamiento.calificacion.toFixed(1) }}
+          </p>
+        </div>
+        <p class="detalle__precio">
+          <span class="detalle__precio-valor">{{ formatearPrecio(alojamiento.precioNoche) }}</span>
+          <span class="detalle__precio-unidad">por noche</span>
+        </p>
+      </header>
+
+      <section class="detalle__galeria" aria-label="Galería de fotos">
+        @if (imagenRota()) {
+          <div class="detalle__reemplazo" role="img" [attr.aria-label]="'Foto de ' + alojamiento.nombre">
+            <span class="detalle__reemplazo-texto">Foto: {{ alojamiento.nombre }}</span>
+          </div>
+        } @else {
+          <img
+            class="detalle__imagen"
+            [src]="imagenActual() || alojamiento.imagenPrincipal"
+            [alt]="'Foto de ' + alojamiento.nombre"
+            (error)="enErrorImagen()"
+          />
+        }
+
+        @if (imagenes().length > 1) {
+          <div class="detalle__miniaturas">
+            @for (imagen of imagenes(); track imagen; let indice = $index) {
+              <button
+                class="detalle__miniatura"
+                type="button"
+                [class.detalle__miniatura--activa]="indice === indiceImagen()"
+                (click)="elegirImagen(indice)"
+                [attr.aria-label]="'Ver la foto ' + (indice + 1) + ' de ' + alojamiento.nombre"
+              >
+                <img class="detalle__miniatura-imagen" [src]="imagen" alt="" />
+              </button>
+            }
+          </div>
+        }
+      </section>
+
+      <div class="detalle__cuerpo">
+        <div class="detalle__principal">
+          <section class="detalle__seccion">
+            <h2 class="detalle__subtitulo">Sobre este alojamiento</h2>
+            <p class="detalle__descripcion">{{ alojamiento.descripcion }}</p>
+            <ul class="detalle__datos">
+              <li><strong>{{ alojamiento.capacidad }}</strong> huéspedes</li>
+              <li><strong>{{ alojamiento.habitaciones }}</strong> habitaciones</li>
+              <li><strong>{{ alojamiento.camas }}</strong> camas</li>
+              <li><strong>{{ alojamiento.banos }}</strong> baños</li>
+            </ul>
+          </section>
+
+          <section class="detalle__seccion">
+            <h2 class="detalle__subtitulo">Servicios</h2>
+            @if (alojamiento.servicios.length > 0) {
+              <ul class="detalle__servicios">
+                @for (servicio of alojamiento.servicios; track servicio) {
+                  <li class="detalle__servicio"><span aria-hidden="true">✔</span> {{ servicio }}</li>
+                }
+              </ul>
+            } @else {
+              <p class="detalle__sin-datos">Este alojamiento aún no registra servicios.</p>
+            }
+          </section>
+
+          <section class="detalle__seccion">
+            <h2 class="detalle__subtitulo">Reglas</h2>
+            @if (alojamiento.reglas.length > 0) {
+              <ul class="detalle__reglas">
+                @for (regla of alojamiento.reglas; track regla) {
+                  <li class="detalle__regla">{{ regla }}</li>
+                }
+              </ul>
+            } @else {
+              <p class="detalle__sin-datos">No hay reglas registradas para este alojamiento.</p>
+            }
+          </section>
+
+          <section class="detalle__seccion">
+            <h2 class="detalle__subtitulo">Reseñas</h2>
+            @if (resenas().length === 0) {
+              <app-estado-vacio
+                titulo="Aún no hay reseñas"
+                mensaje="Alójate aquí y comparte tu experiencia para que otros la conozcan."
+              />
+            } @else {
+              <div class="detalle__resenas">
+                @for (resena of resenas(); track resena.id) {
+                  <article class="detalle__resena">
+                    <h3 class="detalle__resena-autor">{{ resena.usuario }}</h3>
+                    <p class="detalle__resena-nota">★ {{ resena.calificacion.toFixed(1) }}</p>
+                    <p class="detalle__resena-comentario">{{ resena.comentario }}</p>
+                  </article>
+                }
+              </div>
+            }
+          </section>
+        </div>
+
+        <aside class="detalle__reserva">
+          <app-form-reserva [alojamiento]="alojamiento" (reservaCreada)="onReservaCreada($event)" />
+        </aside>
+      </div>
+    </div>
+  } @else if (cargada()) {
+    <div class="contenedor">
+      <app-estado-vacio
+        titulo="Alojamiento no encontrado"
+        mensaje="Puede que ya no esté disponible. Explora los alojamientos activos."
+        textoAccion="Ver alojamientos"
+        (accion)="irAListado()"
+      />
+    </div>
+  } @else {
+    <div class="contenedor">
+      <p class="detalle__cargando" aria-live="polite">Cargando el alojamiento…</p>
+    </div>
+  }
+</main>

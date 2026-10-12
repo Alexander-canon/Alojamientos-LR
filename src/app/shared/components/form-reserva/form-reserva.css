@@ -6,15 +6,70 @@
   background: var(--color-fondo);
   padding: var(--space-4);
 }
+.form-reserva__encabezado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
 .form-reserva__titulo {
   font-size: var(--text-xl);
   color: var(--color-texto);
   margin: 0;
 }
+.form-reserva__pasos {
+  display: flex;
+  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--text-sm);
+  color: var(--color-texto);
+  opacity: 0.8;
+}
+.form-reserva__paso {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.form-reserva__paso-numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--color-suave);
+  font-size: var(--text-sm);
+}
+.form-reserva__paso--activo {
+  opacity: 1;
+  font-weight: 700;
+}
+.form-reserva__paso--activo .form-reserva__paso-numero {
+  background: var(--color-primario);
+  color: var(--color-fondo);
+}
 .form-reserva__campos {
   display: grid;
   gap: var(--space-3);
   font-size: var(--text-base);
+}
+.form-reserva__resumen {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--color-suave);
+  font-size: var(--text-base);
+}
+.form-reserva__resumen-fila {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.form-reserva__resumen-fila dt,
+.form-reserva__resumen-fila dd {
+  margin: 0;
 }
 .form-reserva__errores {
   list-style: none;
@@ -32,17 +87,26 @@
   color: var(--color-texto);
   font-size: var(--text-base);
 }
+.form-reserva__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
 .form-reserva__boton {
   background: var(--color-primario);
   color: var(--color-fondo);
   border: none;
   padding: var(--space-2) var(--space-4);
-  font-family: Arial, sans-serif;
+  font-family: var(--font-base);
   font-size: var(--text-base);
   cursor: pointer;
 }
 .form-reserva__boton:hover { opacity: 0.9; }
-
+.form-reserva__boton--secundario {
+  background: none;
+  border: 1px solid var(--color-primario);
+  color: var(--color-primario);
+}
 .form-reserva__campo {
   display: flex;
   flex-direction: column;
@@ -58,7 +122,7 @@
   border: 1px solid var(--color-suave);
   background: var(--color-fondo);
   color: var(--color-texto);
-  font-family: Arial, sans-serif;
+  font-family: var(--font-base);
   font-size: var(--text-base);
 }
 .form-reserva__input:focus-visible {

@@ -1,62 +1,88 @@
 .mis-reservas {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: var(--space-5) var(--space-3);
-  color: var(--color-texto);
+  min-height: 60vh;
+  padding-block: var(--space-5);
 }
+
 .mis-reservas__titulo {
-  font-size: var(--text-2xl);
   margin: 0 0 var(--space-4);
+  font-size: var(--text-2xl);
 }
+
 .mis-reservas__lista {
   display: grid;
-  gap: var(--space-3);
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
 }
+
+@media (min-width: 48rem) {
+  .mis-reservas__lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .mis-reservas__tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
   border: 1px solid var(--color-suave);
-  background: var(--color-fondo);
-  padding: var(--space-3);
-  font-size: var(--text-base);
+  border-radius: var(--radius-md);
+  background-color: var(--color-fondo);
 }
+
+.mis-reservas__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
 .mis-reservas__nombre {
+  margin: 0;
   font-size: var(--text-lg);
-  margin: 0 0 var(--space-2);
 }
-.mis-reservas__total {
-  font-size: var(--text-lg);
-  color: var(--color-primario);
-  font-weight: bold;
-}
-.mis-reservas__cancelar {
-  background: var(--color-fondo);
+
+.mis-reservas__pill {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  background-color: var(--color-suave);
   color: var(--color-texto);
-  border: 1px solid var(--color-primario);
-  padding: var(--space-1) var(--space-3);
-  font-family: Arial, sans-serif;
   font-size: var(--text-sm);
-  cursor: pointer;
+  font-weight: 700;
 }
-.mis-reservas__vacio {
-  background: var(--color-suave);
-  padding: var(--space-6) var(--space-4);
-  text-align: center;
+
+.mis-reservas__detalles {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
 }
-.mis-reservas__vacio-titulo {
-  font-size: var(--text-xl);
-  margin: 0 0 var(--space-2);
-}
-.mis-reservas__enlace {
-  display: inline-block;
-  margin-top: var(--space-3);
-  background: var(--color-acento);
-  color: var(--color-texto);
-  padding: var(--space-2) var(--space-4);
-  text-decoration: none;
+
+.mis-reservas__detalle {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
   font-size: var(--text-base);
 }
 
-.mis-reservas__volver {
+.mis-reservas__detalle + .mis-reservas__detalle {
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-suave);
+}
+
+.mis-reservas__detalle-clave,
+.mis-reservas__detalle-valor {
+  margin: 0;
+}
+
+.mis-reservas__detalle-clave {
+  opacity: 0.7;
+}
+
+.mis-reservas__detalle-valor {
+  text-align: right;
+}
+
+.mis-reservas__total {
   color: var(--color-primario);
-  font-size: var(--text-sm);
+  font-weight: 700;
 }

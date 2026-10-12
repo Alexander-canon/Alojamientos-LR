@@ -2,6 +2,7 @@ export interface Reserva {
   id: string;
   alojamientoId: number;
   alojamientoNombre: string;
+  ciudad: string;
   fechaEntrada: string; // formato AAAA-MM-DD
   fechaSalida: string;  // formato AAAA-MM-DD
   huespedes: number;
@@ -18,6 +19,7 @@ export interface Reserva {
 export interface DatosReserva {
   alojamientoId: number;
   alojamientoNombre: string;
+  ciudad: string;
   precioNoche: number;
   tarifaLimpieza: number;
   capacidad: number;

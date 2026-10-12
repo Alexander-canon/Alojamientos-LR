@@ -1,40 +1,65 @@
 <section class="form-reserva">
-  <h2 class="form-reserva__titulo">Reserva este alojamiento</h2>
-
-  <div class="form-reserva__campos">
-    <div class="form-reserva__campo">
-      <label class="form-reserva__label" for="fecha-entrada">Fecha de entrada</label>
-      <input class="form-reserva__input" id="fecha-entrada" type="date" [min]="hoy"
-        [ngModel]="fechaEntrada" (ngModelChange)="onFechaEntrada($event)" />
-    </div>
-
-    <div class="form-reserva__campo">
-      <label class="form-reserva__label" for="fecha-salida">Fecha de salida</label>
-      <input class="form-reserva__input" id="fecha-salida" type="date" [min]="fechaEntrada || hoy"
-        [ngModel]="fechaSalida" (ngModelChange)="onFechaSalida($event)" />
-    </div>
-
-    <div class="form-reserva__campo">
-      <label class="form-reserva__label" for="huespedes">Huéspedes</label>
-      <input class="form-reserva__input" id="huespedes" type="number" min="1" [max]="alojamiento.capacidad"
-        [(ngModel)]="huespedes" />
-      <span class="form-reserva__ayuda">Máximo {{ alojamiento.capacidad }}</span>
-    </div>
-
-    <div class="form-reserva__campo">
-      <label class="form-reserva__label" for="nombre">Nombre completo</label>
-      <input class="form-reserva__input" id="nombre" type="text" autocomplete="name"
-        [(ngModel)]="nombreHuesped" />
-    </div>
-
-    <div class="form-reserva__campo">
-      <label class="form-reserva__label" for="correo">Correo</label>
-      <input class="form-reserva__input" id="correo" type="email" autocomplete="email"
-        [(ngModel)]="correo" />
-    </div>
+  <div class="form-reserva__encabezado">
+    <h2 class="form-reserva__titulo">Reserva este alojamiento</h2>
+    <ol class="form-reserva__pasos" aria-label="Progreso de la reserva">
+      <li class="form-reserva__paso" [class.form-reserva__paso--activo]="paso === 1">
+        <span class="form-reserva__paso-numero">1</span> Estancia
+      </li>
+      <li class="form-reserva__paso" [class.form-reserva__paso--activo]="paso === 2">
+        <span class="form-reserva__paso-numero">2</span> Confirmación
+      </li>
+    </ol>
   </div>
 
-  <app-cotizador [cotizacion]="cotizacion"></app-cotizador>
+  @if (paso === 1) {
+    <div class="form-reserva__campos">
+      <div class="form-reserva__campo">
+        <label class="form-reserva__label" for="fecha-entrada">Fecha de entrada</label>
+        <input class="form-reserva__input" id="fecha-entrada" type="date" [min]="hoy"
+          [ngModel]="fechaEntrada" (ngModelChange)="onFechaEntrada($event)" />
+      </div>
+
+      <div class="form-reserva__campo">
+        <label class="form-reserva__label" for="fecha-salida">Fecha de salida</label>
+        <input class="form-reserva__input" id="fecha-salida" type="date" [min]="fechaEntrada || hoy"
+          [ngModel]="fechaSalida" (ngModelChange)="onFechaSalida($event)" />
+      </div>
+
+      <div class="form-reserva__campo">
+        <label class="form-reserva__label" for="huespedes">Huéspedes</label>
+        <input class="form-reserva__input" id="huespedes" type="number" min="1" [max]="alojamiento.capacidad"
+          [(ngModel)]="huespedes" />
+        <span class="form-reserva__ayuda">Máximo {{ alojamiento.capacidad }}</span>
+      </div>
+    </div>
+  } @else {
+    <dl class="form-reserva__resumen">
+      <div class="form-reserva__resumen-fila">
+        <dt>Estancia</dt>
+        <dd>{{ formatearFecha(fechaEntrada) }} → {{ formatearFecha(fechaSalida) }}</dd>
+      </div>
+      <div class="form-reserva__resumen-fila">
+        <dt>Huéspedes</dt>
+        <dd>{{ huespedes }}</dd>
+      </div>
+    </dl>
+
+    <app-cotizador [cotizacion]="cotizacion"></app-cotizador>
+
+    <div class="form-reserva__campos">
+      <div class="form-reserva__campo">
+        <label class="form-reserva__label" for="nombre">Nombre completo</label>
+        <input class="form-reserva__input" id="nombre" type="text" autocomplete="name"
+          [(ngModel)]="nombreHuesped" />
+      </div>
+
+      <div class="form-reserva__campo">
+        <label class="form-reserva__label" for="correo">Correo</label>
+        <input class="form-reserva__input" id="correo" type="email" autocomplete="email"
+          [(ngModel)]="correo" />
+      </div>
+    </div>
+  }
 
   @if (errores.length > 0) {
     <ul class="form-reserva__errores" role="alert">
@@ -48,5 +73,13 @@
     <p class="form-reserva__exito" role="status">{{ mensajeExito }}</p>
   }
 
-  <button class="form-reserva__boton" type="button" (click)="onReservar()">Reservar ahora</button>
+  <div class="form-reserva__acciones">
+    @if (paso === 1) {
+      <button class="form-reserva__boton" type="button" (click)="continuar()">Continuar</button>
+    } @else {
+      <button class="form-reserva__boton form-reserva__boton--secundario" type="button"
+        (click)="volver()">Volver</button>
+      <button class="form-reserva__boton" type="button" (click)="onReservar()">Confirmar y reservar</button>
+    }
+  </div>
 </section>

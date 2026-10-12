@@ -15,10 +15,10 @@
       "tarifaLimpieza": 45000,
       "calificacion": 4.8,
       "activo": true,
-      "imagenPrincipal": "assets/images/loft-bogota.jpg",
+      "imagenPrincipal": "https://images.unsplash.com/photo-1551133896-fc95b9d13ba0?auto=format&fit=crop&w=1200&q=80",
       "imagenes": [
-        "assets/images/loft-bogota.jpg",
-        "assets/images/loft-bogota-2.jpg"
+        "https://images.unsplash.com/photo-1551133896-fc95b9d13ba0?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1633624488546-059750ddde5b?auto=format&fit=crop&w=1200&q=80"
       ],
       "servicios": [
         "Wi-Fi",
@@ -46,10 +46,10 @@
       "tarifaLimpieza": 70000,
       "calificacion": 4.9,
       "activo": true,
-      "imagenPrincipal": "assets/images/cartagena.jpg",
+      "imagenPrincipal": "https://images.unsplash.com/photo-1651421978782-9817d9feccaa?auto=format&fit=crop&w=1200&q=80",
       "imagenes": [
-        "assets/images/cartagena.jpg",
-        "assets/images/cartagena-2.jpg"
+        "https://images.unsplash.com/photo-1651421978782-9817d9feccaa?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1570579425266-313ba797eb6a?auto=format&fit=crop&w=1200&q=80"
       ],
       "servicios": [
         "Wi-Fi",
@@ -78,10 +78,10 @@
       "tarifaLimpieza": 60000,
       "calificacion": 4.7,
       "activo": true,
-      "imagenPrincipal": "assets/images/guatape.jpg",
+      "imagenPrincipal": "https://images.unsplash.com/photo-1764815685159-b3b5b371a687?auto=format&fit=crop&w=1200&q=80",
       "imagenes": [
-        "assets/images/guatape.jpg",
-        "assets/images/guatape-2.jpg"
+        "https://images.unsplash.com/photo-1764815685159-b3b5b371a687?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1764815708450-b5bbbed251cc?auto=format&fit=crop&w=1200&q=80"
       ],
       "servicios": [
         "Wi-Fi",
@@ -109,10 +109,10 @@
       "tarifaLimpieza": 90000,
       "calificacion": 4.6,
       "activo": true,
-      "imagenPrincipal": "assets/images/villa-leyva.jpg",
+      "imagenPrincipal": "https://images.unsplash.com/photo-1604074154455-2e5cf522b36c?auto=format&fit=crop&w=1200&q=80",
       "imagenes": [
-        "assets/images/villa-leyva.jpg",
-        "assets/images/villa-leyva-2.jpg"
+        "https://images.unsplash.com/photo-1604074154455-2e5cf522b36c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1603730646974-96e9be8c25bf?auto=format&fit=crop&w=1200&q=80"
       ],
       "servicios": [
         "Wi-Fi",
@@ -140,9 +140,10 @@
       "tarifaLimpieza": 50000,
       "calificacion": 4.5,
       "activo": true,
-      "imagenPrincipal": "assets/images/medellin.jpg",
+      "imagenPrincipal": "https://images.unsplash.com/photo-1680209082240-1abf11585936?auto=format&fit=crop&w=1200&q=80",
       "imagenes": [
-        "assets/images/medellin.jpg"
+        "https://images.unsplash.com/photo-1680209082240-1abf11585936?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1697082390845-38b109166921?auto=format&fit=crop&w=1200&q=80"
       ],
       "servicios": [
         "Wi-Fi",

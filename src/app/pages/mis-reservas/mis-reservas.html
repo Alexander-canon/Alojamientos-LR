@@ -1,26 +1,51 @@
 <main class="mis-reservas">
-  <a class="mis-reservas__volver" routerLink="/">← Volver al inicio</a>
-  <h1 class="mis-reservas__titulo">Mis reservas</h1>
+  <div class="contenedor mis-reservas__contenido">
+    <h1 class="mis-reservas__titulo">Mis reservas</h1>
 
-  @if (reservas.length === 0) {
-    <section class="mis-reservas__vacio">
-      <h2 class="mis-reservas__vacio-titulo">Aún no tienes reservas</h2>
-      <p>Cuando reserves un alojamiento, lo verás aquí.</p>
-      <a class="mis-reservas__enlace" routerLink="/alojamientos">Explorar alojamientos</a>
-    </section>
-  } @else {
-    <div class="mis-reservas__lista">
-      @for (reserva of reservas; track reserva.id) {
-        <article class="mis-reservas__tarjeta">
-          <h2 class="mis-reservas__nombre">{{ reserva.alojamientoNombre }}</h2>
-          <p>{{ reserva.fechaEntrada }} → {{ reserva.fechaSalida }} ({{ reserva.noches }} noches)</p>
-          <p>{{ reserva.huespedes }} huéspedes · {{ reserva.nombreHuesped }}</p>
-          <p class="mis-reservas__total">{{ formatearPrecio(reserva.total) }}</p>
-          <button class="mis-reservas__cancelar" type="button" (click)="onCancelar(reserva.id)">
-            Cancelar reserva
-          </button>
-        </article>
-      }
-    </div>
-  }
+    @if (reservas.length === 0) {
+      <app-estado-vacio
+        titulo="Aún no tienes reservas"
+        mensaje="Cuando reserves un alojamiento, lo verás aquí con todos sus detalles."
+        textoAccion="Explorar alojamientos"
+        (accion)="irAAlojamientos()"
+      />
+    } @else {
+      <div class="mis-reservas__lista">
+        @for (reserva of reservas; track reserva.id) {
+          <article class="mis-reservas__tarjeta">
+            <div class="mis-reservas__cabecera">
+              <h2 class="mis-reservas__nombre">{{ reserva.alojamientoNombre }}</h2>
+              <span class="mis-reservas__pill">CONFIRMADA</span>
+            </div>
+
+            <dl class="mis-reservas__detalles">
+              <div class="mis-reservas__detalle">
+                <dt class="mis-reservas__detalle-clave">Ciudad</dt>
+                <dd class="mis-reservas__detalle-valor">{{ reserva.ciudad }}</dd>
+              </div>
+              <div class="mis-reservas__detalle">
+                <dt class="mis-reservas__detalle-clave">Estancia</dt>
+                <dd class="mis-reservas__detalle-valor">
+                  {{ formatearFecha(reserva.fechaEntrada) }} → {{ formatearFecha(reserva.fechaSalida) }}
+                  · {{ reserva.noches }} noches
+                </dd>
+              </div>
+              <div class="mis-reservas__detalle">
+                <dt class="mis-reservas__detalle-clave">Huéspedes</dt>
+                <dd class="mis-reservas__detalle-valor">
+                  {{ reserva.huespedes }} · {{ reserva.nombreHuesped }}
+                </dd>
+              </div>
+              <div class="mis-reservas__detalle">
+                <dt class="mis-reservas__detalle-clave">Total</dt>
+                <dd class="mis-reservas__detalle-valor mis-reservas__total">
+                  {{ formatearPrecio(reserva.total) }}
+                </dd>
+              </div>
+            </dl>
+          </article>
+        }
+      </div>
+    }
+  </div>
 </main>

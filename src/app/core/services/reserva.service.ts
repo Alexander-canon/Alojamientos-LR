@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Cotizacion } from '../models/cotizacion';
 import { DatosReserva, Reserva } from '../models/reserva';
 
-// Estas reglas salen directo del enunciado y quedan repetidas en el README.
+// Reglas de negocio definidas en el enunciado del proyecto.
 const MIN_NOCHES = 1;
 const PORCENTAJE_SERVICIO = 0.1;
 const CLAVE_STORAGE = 'reservas';
@@ -70,7 +70,8 @@ export class ReservaService {
   obtenerReservas(): Reserva[] {
     try {
       const guardado = localStorage.getItem(CLAVE_STORAGE);
-      return guardado ? JSON.parse(guardado) : [];
+      const reservas: Reserva[] = guardado ? JSON.parse(guardado) : [];
+      return reservas.map(r => ({ ...r, ciudad: r.ciudad ?? '' }));
     } catch {
       return [];
     }
@@ -93,6 +94,7 @@ export class ReservaService {
       id: `RES-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       alojamientoId: datos.alojamientoId,
       alojamientoNombre: datos.alojamientoNombre,
+      ciudad: datos.ciudad,
       fechaEntrada: datos.fechaEntrada,
       fechaSalida: datos.fechaSalida,
       huespedes: datos.huespedes,
@@ -106,9 +108,5 @@ export class ReservaService {
     };
     this.guardar([...this.obtenerReservas(), reserva]);
     return reserva;
-  }
-
-  cancelarReserva(id: string): void {
-    this.guardar(this.obtenerReservas().filter(r => r.id !== id));
   }
 }

@@ -17,6 +17,9 @@ export class FormReserva {
   @Input() alojamiento!: Alojamiento;
   @Output() reservaCreada = new EventEmitter<Reserva>();
 
+  // Paso 1: fechas y huéspedes. Paso 2: revisar la cotización y confirmar.
+  paso: 1 | 2 = 1;
+
   fechaEntrada: string = '';
   fechaSalida: string = '';
   huespedes: number = 1;
@@ -52,12 +55,27 @@ export class FormReserva {
     );
   }
 
+  // Solo pasa al paso 2 una estancia que cumpla las reglas de negocio; de ahí
+  // que al reservar ya exista una cotización válida generada antes.
+  continuar() {
+    this.errores = this.validarEstancia();
+    if (this.errores.length > 0) return;
+    this.paso = 2;
+  }
+
+  volver() {
+    this.errores = [];
+    this.paso = 1;
+  }
+
   onReservar() {
     this.mensajeExito = '';
+    if (this.paso !== 2 || !this.cotizacion) return;
 
     const datos = {
       alojamientoId: this.alojamiento.id,
       alojamientoNombre: this.alojamiento.nombre,
+      ciudad: this.alojamiento.ciudad,
       precioNoche: this.alojamiento.precioNoche,
       tarifaLimpieza: this.alojamiento.tarifaLimpieza,
       capacidad: this.alojamiento.capacidad,
@@ -79,12 +97,42 @@ export class FormReserva {
     }
   }
 
+  // Reglas que se revisan antes de mostrar la cotización.
+  private validarEstancia(): string[] {
+    const errores: string[] = [];
+    if (!this.fechaEntrada || !this.fechaSalida) {
+      errores.push('Elige la fecha de entrada y la de salida.');
+    } else {
+      if (this.fechaEntrada < this.hoy) {
+        errores.push('La fecha de entrada no puede ser anterior a hoy.');
+      }
+      const noches = this.reservaService.calcularNoches(this.fechaEntrada, this.fechaSalida);
+      if (noches < 1) {
+        errores.push('La fecha de salida debe ser posterior a la de entrada.');
+      }
+    }
+    const hue = Number(this.huespedes);
+    if (!Number.isInteger(hue) || hue < 1) {
+      errores.push('Debe haber al menos 1 huésped.');
+    } else if (hue > this.alojamiento.capacidad) {
+      errores.push(`Este alojamiento admite máximo ${this.alojamiento.capacidad} huéspedes.`);
+    }
+    return errores;
+  }
+
   private limpiar() {
+    this.paso = 1;
     this.fechaEntrada = '';
     this.fechaSalida = '';
     this.huespedes = 1;
     this.nombreHuesped = '';
     this.correo = '';
     this.cotizacion = null;
+  }
+
+  // Las fechas se guardan en formato ISO (aaaa-mm-dd) y acá se leen en español.
+  formatearFecha(iso: string): string {
+    const [anno, mes, dia] = iso.split('-');
+    return `${dia}/${mes}/${anno}`;
   }
 }

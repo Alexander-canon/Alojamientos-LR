@@ -1,0 +1,7 @@
+// El aviso flota al pie centrado y desaparece solo; nunca bloquea la pantalla.
+@if (visible()) {
+  <div class="toast" role="status">
+    <span class="toast__icono" aria-hidden="true">✓</span>
+    {{ mensaje() }}
+  </div>
+}
