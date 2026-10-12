@@ -1,0 +1,7 @@
+/* La app ocupa toda el alto para que el pie quede abajo aunque el contenido
+   sea corto. */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}

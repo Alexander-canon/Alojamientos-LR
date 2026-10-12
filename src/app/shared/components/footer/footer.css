@@ -1,4 +1,8 @@
 /* Pie de página: centrado, en tres líneas. */
+:host {
+  margin-top: auto;
+}
+
 .footer {
   padding-block: var(--space-6);
   background-color: var(--color-primario);
@@ -7,6 +11,10 @@
 }
 
 .footer__marca {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
   margin: 0 0 var(--space-2);
   font-weight: 700;
 }

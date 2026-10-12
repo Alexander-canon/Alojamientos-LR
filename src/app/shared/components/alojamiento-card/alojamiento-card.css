@@ -3,16 +3,16 @@
 .tarjeta {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--color-suave);
+  height: 100%;
+  border: 1px solid var(--borde);
   border-radius: var(--radius-md);
   background-color: var(--color-fondo);
-  box-shadow: var(--sombra);
   overflow: hidden;
   transition: box-shadow 0.2s ease;
 }
 
 .tarjeta:hover {
-  box-shadow: var(--sombra-hover);
+  box-shadow: var(--sombra);
 }
 
 .tarjeta__media {
@@ -27,7 +27,7 @@
   z-index: 1;
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-full);
-  background-color: var(--color-primario);
+  background-color: color-mix(in srgb, var(--color-primario) 80%, var(--color-fondo));
   color: var(--color-fondo);
   font-size: var(--text-sm);
 }
@@ -49,6 +49,7 @@
 .tarjeta__nombre {
   margin: 0;
   font-size: var(--text-lg);
+  font-weight: normal;
 }
 
 .tarjeta__ubicacion {
@@ -56,8 +57,8 @@
   align-items: center;
   gap: var(--space-1);
   margin: 0;
+  color: var(--texto-secundario);
   font-size: var(--text-sm);
-  opacity: 0.7;
 }
 
 .tarjeta__datos {
@@ -73,24 +74,17 @@
   display: flex;
   align-items: center;
   gap: var(--space-1);
+  color: var(--texto-secundario);
   font-size: var(--text-sm);
-  opacity: 0.7;
 }
 
 .tarjeta__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-1);
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.tarjeta__chip {
-  padding: var(--space-1) var(--space-2);
-  border-radius: var(--radius-full);
-  background-color: var(--color-suave);
-  font-size: var(--text-sm);
 }
 
 .tarjeta__pie {
@@ -98,7 +92,8 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  margin-top: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-3);
 }
 
 .tarjeta__precio {

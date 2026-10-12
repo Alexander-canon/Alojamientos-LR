@@ -41,7 +41,7 @@
 
     <ul class="tarjeta__chips">
       @for (servicio of serviciosPrincipales; track servicio) {
-        <li class="tarjeta__chip">{{ servicio }}</li>
+        <li class="chip">{{ servicio }}</li>
       }
     </ul>
 
@@ -50,7 +50,7 @@
         {{ formatearPrecio(alojamiento.precioNoche) }}
         <span class="tarjeta__precio-nota">/ noche</span>
       </p>
-      <button type="button" class="boton boton--primario boton--pequeno" (click)="verDetalle.emit(alojamiento.id)">
+      <button type="button" class="boton boton--contorno" (click)="verDetalle.emit(alojamiento.id)">
         Ver detalle
       </button>
     </div>
