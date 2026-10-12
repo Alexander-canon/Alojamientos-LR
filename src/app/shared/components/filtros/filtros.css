@@ -1,0 +1,53 @@
+/* La barra de filtros: en fila en pantallas anchas y apilada en móvil. */
+.filtros {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-suave);
+  border-radius: var(--radius-md);
+  background-color: var(--color-fondo);
+}
+
+@media (min-width: 48rem) {
+  .filtros {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+    align-items: end;
+  }
+}
+
+.filtros__campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.filtros__etiqueta {
+  font-size: var(--text-sm);
+}
+
+.filtros__control {
+  min-height: 3rem; /* 48px */
+  padding-inline: var(--space-3);
+  border: 1px solid var(--color-suave);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+}
+
+.filtros__accion {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtros__limpiar {
+  border-color: var(--color-primario);
+  background-color: transparent;
+  color: var(--color-primario);
+}
+
+.filtros__limpiar:hover {
+  background-color: var(--color-suave);
+}

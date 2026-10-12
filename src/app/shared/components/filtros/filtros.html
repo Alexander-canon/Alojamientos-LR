@@ -1,0 +1,64 @@
+<div class="filtros">
+  <div class="filtros__campo">
+    <label class="filtros__etiqueta" for="filtro-ciudad">Ciudad</label>
+    <select
+      class="filtros__control"
+      id="filtro-ciudad"
+      [value]="ciudad"
+      (change)="ciudadChange.emit($any($event.target).value)"
+    >
+      <option value="">Todas las ciudades</option>
+      @for (ciudad of ciudades; track ciudad) {
+        <option [value]="ciudad">{{ ciudad }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filtros__campo">
+    <label class="filtros__etiqueta" for="filtro-huespedes">Huéspedes</label>
+    <input
+      class="filtros__control"
+      id="filtro-huespedes"
+      type="number"
+      min="1"
+      placeholder="Ej. 4"
+      [value]="huespedes ?? ''"
+      (input)="alCambiarHuespedes($any($event.target).value)"
+    />
+  </div>
+
+  <div class="filtros__campo">
+    <label class="filtros__etiqueta" for="filtro-tipo">Tipo de alojamiento</label>
+    <select
+      class="filtros__control"
+      id="filtro-tipo"
+      [value]="tipo"
+      (change)="tipoChange.emit($any($event.target).value)"
+    >
+      <option value="">Todos los tipos</option>
+      @for (tipo of tipos; track tipo) {
+        <option [value]="tipo">{{ tipo }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filtros__campo">
+    <label class="filtros__etiqueta" for="filtro-precio">Precio máximo por noche</label>
+    <input
+      class="filtros__control"
+      id="filtro-precio"
+      type="number"
+      min="0"
+      step="10000"
+      placeholder="Ej. 400000"
+      [value]="precioMax ?? ''"
+      (input)="alCambiarPrecio($any($event.target).value)"
+    />
+  </div>
+
+  <div class="filtros__accion">
+    <button type="button" class="boton filtros__limpiar" (click)="limpiar.emit()">
+      Limpiar
+    </button>
+  </div>
+</div>
