@@ -50,3 +50,66 @@ body {
   outline: 2px solid var(--color-acento);
   outline-offset: 2px;
 }
+
+/* Primitivas que repiten casi todas las pantallas. Las dejo globales para no
+   copiarlas en cada componente: el ancho del contenedor y el botón base. */
+.contenedor {
+  width: 100%;
+  max-width: 68.75rem; /* 1100px */
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+@media (min-width: 48rem) {
+  .contenedor {
+    padding-inline: var(--space-4);
+  }
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.75rem; /* 44px para que se pueda tocar cómodo */
+  padding-inline: var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton--primario {
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+}
+
+.boton--primario:hover {
+  background-color: color-mix(in srgb, var(--color-primario) 88%, var(--color-fondo));
+}
+
+.boton--acento {
+  background-color: var(--color-acento);
+  color: var(--color-texto);
+}
+
+.boton--acento:hover {
+  background-color: color-mix(in srgb, var(--color-acento) 88%, var(--color-texto));
+}
+
+.boton--claro {
+  border-color: var(--color-fondo);
+  color: var(--color-fondo);
+}
+
+.boton--claro:hover {
+  background-color: color-mix(in srgb, var(--color-fondo) 15%, transparent);
+}
+
+.boton--pequeno {
+  min-height: 2.25rem;
+  padding-inline: var(--space-3);
+  font-size: var(--text-sm);
+}

@@ -1,0 +1,58 @@
+<article class="tarjeta">
+  <div class="tarjeta__media">
+    <span class="tarjeta__tipo">{{ alojamiento.tipo }}</span>
+    <img class="tarjeta__foto" [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre" loading="lazy" />
+  </div>
+
+  <div class="tarjeta__cuerpo">
+    <h3 class="tarjeta__nombre">{{ alojamiento.nombre }}</h3>
+
+    <p class="tarjeta__ubicacion">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12Z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </svg>
+      {{ alojamiento.ciudad }} · {{ alojamiento.ubicacion }}
+    </p>
+
+    <ul class="tarjeta__datos">
+      <li class="tarjeta__dato">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.5" />
+          <path d="M5 20a7 7 0 0 1 14 0" />
+        </svg>
+        {{ alojamiento.capacidad }} huéspedes
+      </li>
+      <li class="tarjeta__dato">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 18v-6h18v6" />
+          <path d="M3 12V9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3" />
+          <path d="M6 12v-2" />
+        </svg>
+        {{ alojamiento.camas }} camas
+      </li>
+      <li class="tarjeta__dato">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.1l1-5.8-4.3-4.1 5.9-.9Z" />
+        </svg>
+        {{ alojamiento.calificacion }}
+      </li>
+    </ul>
+
+    <ul class="tarjeta__chips">
+      @for (servicio of serviciosPrincipales; track servicio) {
+        <li class="tarjeta__chip">{{ servicio }}</li>
+      }
+    </ul>
+
+    <div class="tarjeta__pie">
+      <p class="tarjeta__precio">
+        {{ formatearPrecio(alojamiento.precioNoche) }}
+        <span class="tarjeta__precio-nota">/ noche</span>
+      </p>
+      <button type="button" class="boton boton--primario boton--pequeno" (click)="verDetalle.emit(alojamiento.id)">
+        Ver detalle
+      </button>
+    </div>
+  </div>
+</article>

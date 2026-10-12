@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Header } from './shared/components/header/header';
+import { Footer } from './shared/components/footer/footer';
 
-// Componente raíz: solo deja el espacio donde se montan las rutas.
+// Componente raíz: monta el header y el footer que comparten todas las
+// pantallas, y en medio deja el espacio donde entran las rutas.
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

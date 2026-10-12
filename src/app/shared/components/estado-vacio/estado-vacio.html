@@ -1,0 +1,16 @@
+<div class="vacio">
+  <svg class="vacio__icono" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5" />
+  </svg>
+
+  <h2 class="vacio__titulo">{{ titulo }}</h2>
+
+  @if (mensaje) {
+    <p class="vacio__mensaje">{{ mensaje }}</p>
+  }
+
+  @if (textoAccion) {
+    <button type="button" class="boton boton--primario" (click)="accion.emit()">{{ textoAccion }}</button>
+  }
+</div>

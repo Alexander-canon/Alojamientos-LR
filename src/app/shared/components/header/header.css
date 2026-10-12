@@ -1,0 +1,46 @@
+/* Encabezado fijo de la app: fondo verde oscuro y texto blanco. */
+.header {
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+}
+
+.header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 4rem;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-fondo);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.header__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.header__link {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  color: var(--color-fondo);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.header__link:hover {
+  background-color: color-mix(in srgb, var(--color-fondo) 10%, transparent);
+}
+
+.header__link--activo {
+  background-color: color-mix(in srgb, var(--color-fondo) 15%, transparent);
+}

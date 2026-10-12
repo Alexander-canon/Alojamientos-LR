@@ -1,14 +1,21 @@
-// PROVISIONAL: mismos campos que Alexander usa en inicio.ts, mas el id.
-// Cuando Alexander cree la interface oficial, se deja una sola.
+// Un alojamiento tal como viene en marketplace-data.json.
 export interface Alojamiento {
   id: number;
   nombre: string;
+  descripcion: string;
   ciudad: string;
   ubicacion: string;
   tipo: string;
   capacidad: number;
+  habitaciones: number;
   camas: number;
-  calificacion: number;
+  banos: number;
   precioNoche: number;
+  tarifaLimpieza: number;
+  calificacion: number;
+  activo: boolean;
+  imagenPrincipal: string;
+  imagenes: string[];
   servicios: string[];
+  reglas: string[];
 }
