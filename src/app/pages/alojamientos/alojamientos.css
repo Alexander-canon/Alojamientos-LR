@@ -1,26 +1,21 @@
 /* El listado: una columna en móvil y más tarjetas por fila en pantallas grandes. */
 .alojamientos {
-  padding-block: var(--space-5);
+  padding-block: var(--space-6);
 }
 
 .alojamientos__encabezado {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 .alojamientos__titulo {
   margin: 0 0 var(--space-2);
   font-size: var(--text-2xl);
+  font-weight: 700;
 }
 
 .alojamientos__copia {
   margin: 0;
-  opacity: 0.7;
-}
-
-.alojamientos__conteo {
-  margin: var(--space-3) 0;
-  font-size: var(--text-sm);
-  opacity: 0.7;
+  color: var(--texto-secundario);
 }
 
 .alojamientos__grilla {
@@ -29,14 +24,18 @@
   gap: var(--space-4);
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 48rem) {
   .alojamientos__grilla {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 68rem) {
+@media (min-width: 64rem) {
+  .alojamientos__titulo {
+    font-size: var(--text-3xl);
+  }
+
   .alojamientos__grilla {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

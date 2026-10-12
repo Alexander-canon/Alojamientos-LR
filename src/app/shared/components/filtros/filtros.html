@@ -1,64 +1,52 @@
-<div class="filtros">
-  <div class="filtros__campo">
-    <label class="filtros__etiqueta" for="filtro-ciudad">Ciudad</label>
-    <select
-      class="filtros__control"
-      id="filtro-ciudad"
-      [value]="ciudad"
-      (change)="ciudadChange.emit($any($event.target).value)"
-    >
-      <option value="">Todas las ciudades</option>
+<form class="filtros" (submit)="$event.preventDefault()">
+  <label class="filtros__campo">
+    <span class="filtros__etiqueta">Ciudad</span>
+    <select class="filtros__control" [value]="ciudad" (change)="ciudadChange.emit($any($event.target).value)">
+      <option value="">Todas</option>
       @for (ciudad of ciudades; track ciudad) {
         <option [value]="ciudad">{{ ciudad }}</option>
       }
     </select>
-  </div>
+  </label>
 
-  <div class="filtros__campo">
-    <label class="filtros__etiqueta" for="filtro-huespedes">Huéspedes</label>
+  <label class="filtros__campo">
+    <span class="filtros__etiqueta">Huéspedes</span>
     <input
       class="filtros__control"
-      id="filtro-huespedes"
       type="number"
       min="1"
-      placeholder="Ej. 4"
+      placeholder="Huéspedes"
       [value]="huespedes ?? ''"
       (input)="alCambiarHuespedes($any($event.target).value)"
     />
-  </div>
+  </label>
 
-  <div class="filtros__campo">
-    <label class="filtros__etiqueta" for="filtro-tipo">Tipo de alojamiento</label>
-    <select
-      class="filtros__control"
-      id="filtro-tipo"
-      [value]="tipo"
-      (change)="tipoChange.emit($any($event.target).value)"
-    >
-      <option value="">Todos los tipos</option>
+  <label class="filtros__campo">
+    <span class="filtros__etiqueta">Tipo</span>
+    <select class="filtros__control" [value]="tipo" (change)="tipoChange.emit($any($event.target).value)">
+      <option value="">Todos</option>
       @for (tipo of tipos; track tipo) {
         <option [value]="tipo">{{ tipo }}</option>
       }
     </select>
-  </div>
+  </label>
 
-  <div class="filtros__campo">
-    <label class="filtros__etiqueta" for="filtro-precio">Precio máximo por noche</label>
+  <label class="filtros__campo">
+    <span class="filtros__etiqueta">Precio máx / noche</span>
     <input
       class="filtros__control"
-      id="filtro-precio"
       type="number"
-      min="0"
-      step="10000"
-      placeholder="Ej. 400000"
+      min="1"
+      placeholder="Precio máx / noche"
       [value]="precioMax ?? ''"
       (input)="alCambiarPrecio($any($event.target).value)"
     />
-  </div>
+  </label>
 
-  <div class="filtros__accion">
-    <button type="button" class="boton filtros__limpiar" (click)="limpiar.emit()">
-      Limpiar
-    </button>
-  </div>
-</div>
+  <button type="button" class="boton boton--contorno filtros__limpiar" (click)="limpiar.emit()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h10" />
+    </svg>
+    Limpiar
+  </button>
+</form>

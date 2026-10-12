@@ -4,8 +4,12 @@
 
 /* ---------- Hero ---------- */
 .hero {
+  display: grid;
+  place-items: center;
+  padding: var(--space-7) var(--space-3);
   background-color: var(--color-primario);
   color: var(--color-fondo);
+  text-align: center;
 }
 
 .hero__contenido {
@@ -13,15 +17,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  padding-block: var(--space-7);
-  text-align: center;
-}
-
-@media (min-width: 48rem) {
-  .hero__contenido {
-    min-height: 31.25rem; /* ~500px en escritorio */
-    justify-content: center;
-  }
+  max-width: 60ch;
 }
 
 .hero__etiqueta {
@@ -30,6 +26,7 @@
   background-color: var(--color-acento);
   color: var(--color-texto);
   font-size: var(--text-sm);
+  font-weight: 700;
 }
 
 .hero__titulo {
@@ -43,21 +40,39 @@
 }
 
 .hero__texto {
-  max-width: 60ch;
   margin: 0;
-  opacity: 0.85;
+  font-size: var(--text-lg);
+  line-height: 1.5;
 }
 
 .hero__acciones {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   gap: var(--space-3);
+  width: 100%;
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    min-height: 500px;
+  }
+
+  .hero__acciones {
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+  }
+}
+
+@media (min-width: 64rem) {
+  .hero__titulo {
+    font-size: var(--text-4xl);
+  }
 }
 
 /* ---------- Secciones ---------- */
 .seccion {
-  padding-block: var(--space-7);
+  padding-block: var(--space-6);
 }
 
 .seccion--suave {
@@ -69,7 +84,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: var(--space-3);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .seccion__titulo {
@@ -88,56 +103,60 @@
   text-decoration: underline;
 }
 
+@media (min-width: 64rem) {
+  .seccion {
+    padding-block: var(--space-7);
+  }
+
+  .seccion__titulo {
+    font-size: var(--text-2xl);
+  }
+}
+
 /* ---------- Carrusel ---------- */
 .carrusel {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .carrusel__flecha {
-  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 40px;
+  height: 40px;
   border: 1px solid transparent;
   border-radius: var(--radius-full);
   background-color: var(--color-fondo);
-  color: var(--color-primario);
+  color: var(--color-texto);
   box-shadow: var(--sombra);
   cursor: pointer;
 }
 
-.carrusel__flecha:hover {
-  box-shadow: var(--sombra-hover);
-}
-
-.carrusel__pista {
-  flex: 1 1 auto;
-  max-width: 43.75rem; /* ~700px */
-  margin-inline: auto;
-}
-
 .carrusel__slide {
+  position: relative;
+  display: block;
+  height: 220px;
   border-radius: var(--radius-md);
-  background-color: var(--color-fondo);
-  box-shadow: var(--sombra);
+  background-color: var(--color-suave);
+  color: var(--color-fondo);
+  text-decoration: none;
   overflow: hidden;
 }
 
-.carrusel__media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 14rem; /* ~225px */
-  background-color: color-mix(in srgb, var(--color-suave) 60%, var(--color-fondo));
-  color: var(--color-primario);
+.carrusel__imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .carrusel__info {
-  padding: var(--space-3) var(--space-4);
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  background: linear-gradient(transparent, color-mix(in srgb, var(--color-texto) 85%, transparent));
 }
 
 .carrusel__nombre {
@@ -148,29 +167,41 @@
 .carrusel__meta {
   margin: var(--space-1) 0 0;
   font-size: var(--text-sm);
-  opacity: 0.7;
 }
 
 .carrusel__puntos {
   display: flex;
   justify-content: center;
   gap: var(--space-2);
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
 }
 
 .carrusel__punto {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 8px;
+  height: 8px;
   padding: 0;
   border: 0;
   border-radius: var(--radius-full);
-  background-color: var(--color-primario);
-  opacity: 0.3;
+  background-color: color-mix(in srgb, var(--color-primario) 25%, transparent);
   cursor: pointer;
 }
 
 .carrusel__punto--activo {
-  opacity: 1;
+  background-color: var(--color-primario);
+}
+
+@media (min-width: 48rem) {
+  .carrusel {
+    gap: var(--space-3);
+  }
+
+  .carrusel__slide {
+    height: 320px;
+  }
+
+  .carrusel__nombre {
+    font-size: var(--text-xl);
+  }
 }
 
 /* ---------- Grilla de destacados ---------- */

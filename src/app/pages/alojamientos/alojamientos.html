@@ -1,48 +1,34 @@
-<main class="alojamientos">
-  <div class="contenedor">
-    <header class="alojamientos__encabezado">
-      <h1 class="alojamientos__titulo">Alojamientos</h1>
-      <p class="alojamientos__copia">
-        Filtra por ciudad, cantidad de huéspedes, tipo y precio para encontrar
-        tu próxima estancia.
-      </p>
-    </header>
+<main class="contenedor alojamientos">
+  <header class="alojamientos__encabezado">
+    <h1 class="alojamientos__titulo">Alojamientos disponibles</h1>
+    <p class="alojamientos__copia">Encuentra el lugar ideal para tu estancia</p>
+  </header>
 
-    <app-filtros
-      [ciudades]="ciudades()"
-      [tipos]="tipos()"
-      [ciudad]="ciudad()"
-      [huespedes]="huespedes()"
-      [tipo]="tipo()"
-      [precioMax]="precioMax()"
-      (ciudadChange)="alCambiarCiudad($event)"
-      (huespedesChange)="alCambiarHuespedes($event)"
-      (tipoChange)="alCambiarTipo($event)"
-      (precioMaxChange)="alCambiarPrecioMax($event)"
-      (limpiar)="limpiar()"
-    />
+  <app-filtros
+    [ciudades]="ciudades()"
+    [tipos]="tipos()"
+    [ciudad]="ciudad()"
+    [huespedes]="huespedes()"
+    [tipo]="tipo()"
+    [precioMax]="precioMax()"
+    (ciudadChange)="alCambiarCiudad($event)"
+    (huespedesChange)="alCambiarHuespedes($event)"
+    (tipoChange)="alCambiarTipo($event)"
+    (precioMaxChange)="alCambiarPrecioMax($event)"
+    (limpiar)="limpiar()"
+  />
 
-    <p class="alojamientos__conteo" aria-live="polite">
-      @if (filtrados().length === 1) {
-        1 alojamiento encontrado
-      } @else {
-        {{ filtrados().length }} alojamientos encontrados
+  @if (filtrados().length > 0) {
+    <div class="alojamientos__grilla">
+      @for (alojamiento of filtrados(); track alojamiento.id) {
+        <app-alojamiento-card [alojamiento]="alojamiento" (verDetalle)="verDetalle($event)" />
       }
-    </p>
-
-    @if (filtrados().length > 0) {
-      <div class="alojamientos__grilla">
-        @for (alojamiento of filtrados(); track alojamiento.id) {
-          <app-alojamiento-card [alojamiento]="alojamiento" (verDetalle)="verDetalle($event)" />
-        }
-      </div>
-    } @else {
-      <app-estado-vacio
-        titulo="No se encontraron alojamientos"
-        mensaje="Ajusta los filtros o límpialos para ver más opciones."
-        textoAccion="Limpiar filtros"
-        (accion)="limpiar()"
-      />
-    }
-  </div>
+    </div>
+  } @else {
+    <app-estado-vacio
+      class="vacio--caja"
+      titulo="No se encontraron alojamientos"
+      mensaje="Intenta ajustar los filtros de búsqueda."
+    />
+  }
 </main>

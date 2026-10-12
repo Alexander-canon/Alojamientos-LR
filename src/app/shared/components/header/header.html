@@ -1,29 +1,27 @@
 <header class="header">
-  <div class="contenedor header__inner">
-    <a class="header__logo" routerLink="/">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M3 10.5 12 3l9 7.5" />
-        <path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5" />
-        <path d="M10 21v-6h4v6" />
-      </svg>
-      <span>Alojamientos LR</span>
+  <a class="header__logo" routerLink="/">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 10.5 12 3l9 7.5" />
+      <path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5" />
+      <path d="M10 21v-6h4v6" />
+    </svg>
+    <span>Alojamientos LR</span>
+  </a>
+  <nav class="header__nav" aria-label="Navegación principal">
+    <a
+      class="header__link"
+      routerLink="/"
+      routerLinkActive="header__link--activo"
+      ariaCurrentWhenActive="page"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Inicio
     </a>
-    <nav class="header__nav" aria-label="Navegación principal">
-      <a
-        class="header__link"
-        routerLink="/"
-        routerLinkActive="header__link--activo"
-        ariaCurrentWhenActive="page"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        Inicio
-      </a>
-      <a class="header__link" routerLink="/alojamientos" routerLinkActive="header__link--activo" ariaCurrentWhenActive="page">
-        Alojamientos
-      </a>
-      <a class="header__link" routerLink="/mis-reservas" routerLinkActive="header__link--activo" ariaCurrentWhenActive="page">
-        Mis reservas
-      </a>
-    </nav>
-  </div>
+    <a class="header__link" routerLink="/alojamientos" routerLinkActive="header__link--activo" ariaCurrentWhenActive="page">
+      Alojamientos
+    </a>
+    <a class="header__link" routerLink="/mis-reservas" routerLinkActive="header__link--activo" ariaCurrentWhenActive="page">
+      Mis reservas
+    </a>
+  </nav>
 </header>

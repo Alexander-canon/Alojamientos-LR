@@ -1,16 +1,19 @@
-/* Encabezado fijo de la app: fondo verde oscuro y texto blanco. */
+/* Encabezado a ancho completo: fondo verde oscuro y texto blanco. */
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 64px;
+  padding-inline: var(--space-3);
   background-color: var(--color-primario);
   color: var(--color-fondo);
 }
 
-.header__inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  min-height: 4rem;
+@media (min-width: 48rem) {
+  .header {
+    padding-inline: var(--space-4);
+  }
 }
 
 .header__logo {
@@ -18,6 +21,7 @@
   align-items: center;
   gap: var(--space-2);
   color: var(--color-fondo);
+  font-size: var(--text-lg);
   font-weight: 700;
   text-decoration: none;
 }
@@ -37,10 +41,7 @@
   text-decoration: none;
 }
 
-.header__link:hover {
-  background-color: color-mix(in srgb, var(--color-fondo) 10%, transparent);
-}
-
+.header__link:hover,
 .header__link--activo {
   background-color: color-mix(in srgb, var(--color-fondo) 15%, transparent);
 }
