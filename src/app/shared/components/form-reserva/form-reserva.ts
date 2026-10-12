@@ -46,6 +46,7 @@ export class FormReserva {
   actualizarCotizacion() {
     this.cotizacion = this.reservaService.cotizar(
       this.alojamiento.precioNoche,
+      this.alojamiento.tarifaLimpieza,
       this.fechaEntrada,
       this.fechaSalida
     );
@@ -58,6 +59,7 @@ export class FormReserva {
       alojamientoId: this.alojamiento.id,
       alojamientoNombre: this.alojamiento.nombre,
       precioNoche: this.alojamiento.precioNoche,
+      tarifaLimpieza: this.alojamiento.tarifaLimpieza,
       capacidad: this.alojamiento.capacidad,
       fechaEntrada: this.fechaEntrada,
       fechaSalida: this.fechaSalida,
