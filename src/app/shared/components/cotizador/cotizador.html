@@ -1,1 +1,26 @@
-<p>cotizador works!</p>
+<section class="cotizador">
+  <h3 class="cotizador__titulo">Resumen de tu reserva</h3>
+
+  @if (cotizacion) {
+    <dl class="cotizador__lista">
+      <div class="cotizador__fila">
+        <dt>{{ formatearPrecio(cotizacion.precioNoche) }} x {{ cotizacion.noches }} noches</dt>
+        <dd>{{ formatearPrecio(cotizacion.subtotal) }}</dd>
+      </div>
+      <div class="cotizador__fila">
+        <dt>Tarifa de limpieza</dt>
+        <dd>{{ formatearPrecio(cotizacion.tarifaLimpieza) }}</dd>
+      </div>
+      <div class="cotizador__fila">
+        <dt>Tarifa de servicio</dt>
+        <dd>{{ formatearPrecio(cotizacion.tarifaServicio) }}</dd>
+      </div>
+      <div class="cotizador__fila cotizador__fila--total">
+        <dt>Total</dt>
+        <dd>{{ formatearPrecio(cotizacion.total) }}</dd>
+      </div>
+    </dl>
+  } @else {
+    <p class="cotizador__ayuda">Elige las fechas para ver el precio total.</p>
+  }
+</section>

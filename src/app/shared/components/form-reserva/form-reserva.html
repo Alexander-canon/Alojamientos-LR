@@ -1,1 +1,52 @@
-<p>form-reserva works!</p>
+<section class="form-reserva">
+  <h2 class="form-reserva__titulo">Reserva este alojamiento</h2>
+
+  <div class="form-reserva__campos">
+    <div class="form-reserva__campo">
+      <label class="form-reserva__label" for="fecha-entrada">Fecha de entrada</label>
+      <input class="form-reserva__input" id="fecha-entrada" type="date" [min]="hoy"
+        [ngModel]="fechaEntrada" (ngModelChange)="onFechaEntrada($event)" />
+    </div>
+
+    <div class="form-reserva__campo">
+      <label class="form-reserva__label" for="fecha-salida">Fecha de salida</label>
+      <input class="form-reserva__input" id="fecha-salida" type="date" [min]="fechaEntrada || hoy"
+        [ngModel]="fechaSalida" (ngModelChange)="onFechaSalida($event)" />
+    </div>
+
+    <div class="form-reserva__campo">
+      <label class="form-reserva__label" for="huespedes">Huéspedes</label>
+      <input class="form-reserva__input" id="huespedes" type="number" min="1" [max]="alojamiento.capacidad"
+        [(ngModel)]="huespedes" />
+      <span class="form-reserva__ayuda">Máximo {{ alojamiento.capacidad }}</span>
+    </div>
+
+    <div class="form-reserva__campo">
+      <label class="form-reserva__label" for="nombre">Nombre completo</label>
+      <input class="form-reserva__input" id="nombre" type="text" autocomplete="name"
+        [(ngModel)]="nombreHuesped" />
+    </div>
+
+    <div class="form-reserva__campo">
+      <label class="form-reserva__label" for="correo">Correo</label>
+      <input class="form-reserva__input" id="correo" type="email" autocomplete="email"
+        [(ngModel)]="correo" />
+    </div>
+  </div>
+
+  <app-cotizador [cotizacion]="cotizacion"></app-cotizador>
+
+  @if (errores.length > 0) {
+    <ul class="form-reserva__errores" role="alert">
+      @for (error of errores; track $index) {
+        <li class="form-reserva__error"><span aria-hidden="true">⚠</span> {{ error }}</li>
+      }
+    </ul>
+  }
+
+  @if (mensajeExito) {
+    <p class="form-reserva__exito" role="status">{{ mensajeExito }}</p>
+  }
+
+  <button class="form-reserva__boton" type="button" (click)="onReservar()">Reservar ahora</button>
+</section>

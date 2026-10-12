@@ -1,0 +1,72 @@
+.form-reserva {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border: 1px solid var(--color-suave);
+  background: var(--color-fondo);
+  padding: var(--space-4);
+}
+.form-reserva__titulo {
+  font-size: var(--text-xl);
+  color: var(--color-texto);
+  margin: 0;
+}
+.form-reserva__campos {
+  display: grid;
+  gap: var(--space-3);
+  font-size: var(--text-base);
+}
+.form-reserva__errores {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--color-acento);
+  color: var(--color-texto);
+  font-size: var(--text-sm);
+}
+.form-reserva__error + .form-reserva__error { margin-top: var(--space-1); }
+.form-reserva__exito {
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--color-suave);
+  color: var(--color-texto);
+  font-size: var(--text-base);
+}
+.form-reserva__boton {
+  background: var(--color-primario);
+  color: var(--color-fondo);
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  font-family: Arial, sans-serif;
+  font-size: var(--text-base);
+  cursor: pointer;
+}
+.form-reserva__boton:hover { opacity: 0.9; }
+
+.form-reserva__campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.form-reserva__label {
+  font-size: var(--text-base);
+  color: var(--color-texto);
+}
+.form-reserva__input {
+  min-height: 2.75rem;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-suave);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: Arial, sans-serif;
+  font-size: var(--text-base);
+}
+.form-reserva__input:focus-visible {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 2px;
+}
+.form-reserva__ayuda {
+  font-size: var(--text-sm);
+  color: var(--color-texto);
+  opacity: 0.7;
+}
